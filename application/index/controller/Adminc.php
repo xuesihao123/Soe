@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use app\index\model\Admin\admin;
 
-class adminc extends Controller
+class Adminc extends Controller
 {
     public function freeze()//冻结用户
     {
@@ -33,5 +33,11 @@ class adminc extends Controller
         $json = array();
         $json['flag'] = $freeze->admin_update($userId);
         return json_encode($json);
+    }
+    public function index()
+    {
+        // $this->success('新增成功', 'User/register');
+        
+        return $this->fetch('index/register');
     }
 }

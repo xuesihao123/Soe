@@ -9,6 +9,6 @@ class Index extends Controller
     {
         // $this->success('新增成功', 'User/register');
         
-        return $this->fetch('index/index');
+        return $this->fetch('index/register');
     }
 }

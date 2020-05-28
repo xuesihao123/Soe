@@ -6,6 +6,7 @@
     class Cors
     {
         public function run(&$dispatch){
+            header("Access-Control-Allow-Origin: *");
             $host_name = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : "*";
             $headers = [
                 "Access-Control-Allow-Origin" => $host_name,
