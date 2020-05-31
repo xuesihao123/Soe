@@ -9,7 +9,7 @@ class Adminc extends Controller
 {
     public function freeze()//冻结用户
     {
-        $userId = $_POST['user_Id'];
+        $userId = input('user_Id');
         $freeze = new admin();
         $json = array();
         $json['flag'] = $freeze->admin_freeze($userId);
@@ -18,7 +18,7 @@ class Adminc extends Controller
 
     public function logout()
     {
-        $userId = $_POST['user_Id'];
+        $userId = input('user_Id');
         $logout = new admin();
         $json = array();
         $json['flag'] = $freeze->admin_logout($userId);
@@ -27,8 +27,8 @@ class Adminc extends Controller
 
     public function update()
     {
-        $userId = $_POST['user_Id'];
-        $status = $_POST['status'];
+        $userId = input('user_Id');
+        $status = input('status');
         $update = new admin();
         $json = array();
         $json['flag'] = $freeze->admin_update($userId);

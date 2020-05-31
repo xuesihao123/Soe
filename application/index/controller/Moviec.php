@@ -9,10 +9,10 @@ class Moviec extends Controller
 {
     public function add()
     {
-        $name = $_POST['name'];
-        $brief = $_POST['brief'];
-        $start = $_POST['start'];
-        $end = $_POST['end'];
+        $name = input('name');
+        $brief = input('brief');
+        $start = input('start');
+        $end = input('end');
         $add = new movie();
         $json = array();
         $json['flag'] = $json->movie_add($name,$brief,$start,$end);
@@ -21,11 +21,11 @@ class Moviec extends Controller
 
     public function updata()
     {
-        $id = $_POST['movieId'];
-        $name = $_POST['name'];
-        $brief = $_POST['brief'];
-        $start = $_POST['start'];
-        $end = $_POST['end'];
+        $id = input('movieId');
+        $name = input('name');
+        $brief = input('brief');
+        $start = input('start');
+        $end = input('end');
         $update = new movie();
         $json = array();
         $json['flag'] = $json->movie_update($id,$name,$brief,$start,$end);
@@ -34,7 +34,7 @@ class Moviec extends Controller
 
     public function delete()
     {
-        $movieId = $_POST['movieId'];
+        $movieId = input('movieId');
         $delete = new movie();
         $json = array();
         $json['flag'] = $json->movie_delete($movieId);

@@ -9,8 +9,8 @@ class Commentc extends Controller
 {
     public function add()
     {
-        $comment = $_POST['Comment'];
-        $movieId = $_POST['movieId'];
+        $comment = input('comment');
+        $movieId = input('movieId');
         $userId = $_SESSION['user_Id'];
         $add = new comment();
         $json = array();
@@ -20,7 +20,7 @@ class Commentc extends Controller
 
     public function delete()
     {
-        $commentId = $_POST['commentId'];
+        $commentId = input('commentId');
         $userId = $_SESSION['user_Id'];
         $add = new comment();
         $json = array();

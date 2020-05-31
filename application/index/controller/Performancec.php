@@ -9,7 +9,7 @@ class Performancec extends Controller
 {
     public function content()
     {
-        $movieId = $_POST['movieId'];
+        $movieId = input('movieId');
         $per = new Performance();
         $json = $per->performance_content($movieId);
         if($json == NULL)
@@ -32,7 +32,7 @@ class Performancec extends Controller
 
     public function find()
     {
-        $name = $_POST['name'];
+        $name = input('name');
         $find = new performacne();
         $json = $find->performance_find($name);
         return json_encode($json);
@@ -56,10 +56,10 @@ class Performancec extends Controller
 
     public function plan()//安排演出 要处理时间上的冲突
     {
-        $movieId = $_POST['movieId'];
-        $theaterId = $_POST['theaterId'];
-        $start = $_POST['start'];
-        $time = $_POST['time'];
+        $movieId = input('movieId');
+        $theaterId = input('theaterId');
+        $start = input('start');
+        $time = input('time');
         $plan = new performance();
         $json = array();
         $json['flag'] = $plan->performance_plan($movieId,$theaterId,$start,$time);
@@ -68,10 +68,19 @@ class Performancec extends Controller
 
     public function delete()
     {
-        $performanceId = $_POST['performanceId'];
+        $performanceId = input('performanceId');
         $delete = new performance();
         $json = array();
         $json['flag'] = $delete->performance_delete($performanceId);
+        return json_encode($json);
+    }
+
+    public function select()
+    {
+        $movieId = input('movieId');
+        $theaterId = input('theaterId');
+        $select =  new performance();
+        $json =  $select->performance_select();
         return json_encode($json);
     }
 }

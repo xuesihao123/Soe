@@ -9,7 +9,7 @@ class Ticketc extends Controller
 {
     public function buy()
     {
-        $performanceId = $_POST['performanceId'];
+        $performanceId = input('performanceId');
         $userId = $_SESSION['user_Id'];
         $buy = new Ticket();
         $json = array();
@@ -19,7 +19,7 @@ class Ticketc extends Controller
 
     public function abandon()
     {
-        $performanceId = $_POST['performanceId'];
+        $performanceId = input('performanceId');
         $userId = $_SESSION['user_Id'];
         $buy = new Ticket();
         $json = array();

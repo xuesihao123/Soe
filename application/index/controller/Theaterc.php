@@ -9,8 +9,8 @@ class Theaterc extends Controller
 {
     public function add()
     {
-        $row = $_POST['row'];
-        $col = $_POST['col'];
+        $row = input('row');
+        $col = input('col');
         $add = new theater();
         $json = array();
         $json['flag'] = $add->theater_add($col,$row);

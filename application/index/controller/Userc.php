@@ -9,8 +9,13 @@ class Userc extends Controller
 {
     public function index()//登录
     {
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
+        // $j = input();
+        // dump($j);
+        // $username = $j['username'];
+        // $password = md5($j['password']);
+        $username = input('username');
+        $password = md5(input('password'));
+        dump(input());
         $user = new user;
         $json = array();
         $json['flag'] = $user->user_index($username,$password);
@@ -19,9 +24,12 @@ class Userc extends Controller
     
     public function register()
     {
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $email = $_POST['email'];
+        // $j = input();
+        // $username = $j['username'];
+        // $password = md5($j['password']);
+        $username = input('username');
+        $password = md5(input('password'));
+        $email = input('email');
         $user = new user;
         $json = array();
         $json['flag'] = $user->user_register($username,$password,$email);

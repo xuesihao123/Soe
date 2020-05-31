@@ -9,8 +9,8 @@ class Seatc extends controller
 {
     public function update()
     {
-        $seatId = $_POST['seatId'];
-        $status = $_POST['status'];
+        $seatId = input('seatId');
+        $status = input('status');
         $update = new seat();
         $json = array();
         $json['flag'] = $update->seat_update($seatId,$status);
@@ -19,8 +19,8 @@ class Seatc extends controller
 
     public function show()
     {
-        $theaterId = $_POST['theaterId'];
-        $performanceId = $_POST['performanceId'];
+        $theaterId = input('theaterId');
+        $performanceId = input('performanceId');
         $show = new seat();
         $json = $show->seat_show($theaterId,$performanceId);
         return json_encode($json); 

@@ -8,7 +8,7 @@ use think\Db;
 class Performance extends Model
 {
     public function performance_content($movieId)//返回movie的详细数据
-    {
+   {
         $result =  Db::name('movie')
                 ->where('movie_Id',$movieId)
                 ->find();
@@ -20,9 +20,9 @@ class Performance extends Model
 
     public function performance_show($date)//返回上架所有影片
     {
-        $result = Db::name('performance')
-                ->whereTime('performance_Start','<',"$date")
-                ->whereTime('performance_End','>',"$date")
+        $result = Db::name('movie')
+                ->whereTime('movie_Start','<',"$date")
+                ->whereTime('movie_End','>',"$date")
                 ->select();
         if($result)
             return $result;
@@ -106,5 +106,12 @@ class Performance extends Model
             return 1;
         else
             return 0;
+    }
+
+    public function performance_select($movieId,$theaterId)
+    {
+        $result = Db::name('performance')->where('performance_Id',$movieId)
+                ->where('theater_Id',$theaterId)->select();
+        return $result;
     }
 }
