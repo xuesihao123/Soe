@@ -15,7 +15,6 @@ class Userc extends Controller
         // $password = md5($j['password']);
         $username = input('username');
         $password = md5(input('password'));
-        dump(input());
         $user = new user;
         $json = array();
         $json['flag'] = $user->user_index($username,$password);

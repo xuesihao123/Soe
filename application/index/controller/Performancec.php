@@ -9,14 +9,13 @@ class Performancec extends Controller
 {
     public function content()
     {
-        $movieId = input('movieId');
+        $movieId = input('movie_Id');
         $per = new Performance();
         $json = $per->performance_content($movieId);
         if($json == NULL)
             return NULL;
         else
             return json_encode($json);
-
     }
 
     public function show()
@@ -56,15 +55,16 @@ class Performancec extends Controller
 
     public function plan()//安排演出 要处理时间上的冲突
     {
-        $movieId = input('movieId');
-        $theaterId = input('theaterId');
-        $start = input('start');
-        $time = input('time');
+        $movieId = input('movie_Id');
+        $theaterId = input('theater_Id');
+        $start = input('performance_Start');
+        $time = input('movie_Time');
         $plan = new performance();
         $json = array();
         $json['flag'] = $plan->performance_plan($movieId,$theaterId,$start,$time);
         return json_encode($json);
     }
+
 
     public function delete()
     {
@@ -79,8 +79,18 @@ class Performancec extends Controller
     {
         $movieId = input('movieId');
         $theaterId = input('theaterId');
+        // dump(input());
         $select =  new performance();
-        $json =  $select->performance_select();
+        $json =  $select->performance_select($movieId,$theaterId);
         return json_encode($json);
     }
+
+    public function pshow()
+    {
+        $date = date("Y-m-d H:i:s");
+        $pshow = new performance();
+        $json = $pshow->performance_pshow($date);
+        return json_encode($json);
+    }
+    
 }

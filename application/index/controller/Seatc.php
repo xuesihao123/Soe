@@ -2,15 +2,15 @@
 
 namespace app\index\controller;
 
-use think\controller;
+use think\Controller;
 use app\index\model\Seat\seat;
 
-class Seatc extends controller
+class Seatc extends Controller
 {
     public function update()
     {
-        $seatId = input('seatId');
-        $status = input('status');
+        $seatId = input('seat_Id');
+        $status = input('seat_Status');
         $update = new seat();
         $json = array();
         $json['flag'] = $update->seat_update($seatId,$status);
@@ -21,8 +21,12 @@ class Seatc extends controller
     {
         $theaterId = input('theaterId');
         $performanceId = input('performanceId');
+
+        $performanceId = 0;
+        
         $show = new seat();
         $json = $show->seat_show($theaterId,$performanceId);
         return json_encode($json); 
     }
+    
 }

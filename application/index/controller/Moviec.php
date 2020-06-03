@@ -13,31 +13,37 @@ class Moviec extends Controller
         $brief = input('brief');
         $start = input('start');
         $end = input('end');
+        $time = input('time');
+        $type = input('type');
         $add = new movie();
         $json = array();
-        $json['flag'] = $json->movie_add($name,$brief,$start,$end);
+        $json['flag'] = $add->movie_add($name,$brief,$start,$end,$time,$type);
         return json_encode($json);
     }
 
-    public function updata()
+
+    public function update()
     {
-        $id = input('movieId');
-        $name = input('name');
-        $brief = input('brief');
-        $start = input('start');
-        $end = input('end');
+        $id = input('movie_Id');
+        $name = input('movie_Name');
+        $brief = input('movie_Brief');
+        $start = input('movie_Start');
+        $end = input('movie_End');
+        $time = input('movie_Time');
+        $type = input('movie_Type');
+        $cover = input('movie_Cover');
         $update = new movie();
         $json = array();
-        $json['flag'] = $json->movie_update($id,$name,$brief,$start,$end);
+        $json['flag'] = $update->movie_update($id,$name,$brief,$start,$end,$time,$type,$cover);
         return json_encode($json);
     }
 
     public function delete()
     {
-        $movieId = input('movieId');
+        $movieId = input('movie_Id');
         $delete = new movie();
         $json = array();
-        $json['flag'] = $json->movie_delete($movieId);
+        $json['flag'] = $delete->movie_delete($movieId);
         return json_encode($json);
     }
 
@@ -48,4 +54,13 @@ class Moviec extends Controller
         $json = array_reverse($json);
         return json_encode($json);
     }
+
+    public function find()
+    {
+        $str = input('str');
+        $find = new movie();
+        $json = $find->movie_find($str);
+        return json_encode($json);
+    }
+
 }

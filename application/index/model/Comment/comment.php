@@ -35,4 +35,18 @@ class Comment extends Model
         else
             return 0;  
     }
+
+    public function comment_show($movieId)
+    {
+        $result = Db::name('comment')->alias('c')
+                    ->join('user u','u.user_Id = c.user_Id')
+                    ->field('c.comment_Id,c.user_Id,u.user_Name,c.comment_Content,c.comment_Date')
+                    ->where('movie_Id',$movieId)
+                    ->select();
+        if($result)
+            return 1;
+        else
+            return 0;
+    }
+
 }

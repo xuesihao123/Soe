@@ -4,6 +4,7 @@ namespace app\index\model\User;
 
 use think\Model;
 use think\Db;
+use think\Cache;
 
 class User extends Model
 {
@@ -17,8 +18,10 @@ class User extends Model
                 if($result['user_Status'] == 2)
                     return 2;//账号冻结
                 elseif($result['user_Status'] == 1){
-                    session('user_Id',$result['user_Id']);
-                    return 1;//登录成功
+                    $Id = $result['user_Id'];
+                    Cache::set('Id',"$Id",72000);
+                    Cache::set('Name',"$username",72000);
+                    return 1;
                 }
                 else{
                     return 0;//没有这个账户；
@@ -42,4 +45,5 @@ class User extends Model
         else
             return 0;//注册失败
     }
+
 }
