@@ -21,9 +21,6 @@ class Seatc extends Controller
     {
         $theaterId = input('theaterId');
         $performanceId = input('performanceId');
-
-        $performanceId = 0;
-        
         $show = new seat();
         $json = $show->seat_show($theaterId,$performanceId);
         return json_encode($json); 

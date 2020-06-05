@@ -29,6 +29,7 @@ class Performancec extends Controller
             return json_encode($json);
     }
 
+    
     public function find()
     {
         $name = input('name');
@@ -41,7 +42,7 @@ class Performancec extends Controller
     {
         $date = date("Y-m-d H:i:s",strtotime("+3 day"));
         $per = new Performance();
-        $json = $per->performance_show($date);
+        $json = $per->performance_will($date);
         if($json == NULL)
             return NULL;
         else
@@ -59,16 +60,18 @@ class Performancec extends Controller
         $theaterId = input('theater_Id');
         $start = input('performance_Start');
         $time = input('movie_Time');
+        $price = input('movie_Price');
         $plan = new performance();
         $json = array();
-        $json['flag'] = $plan->performance_plan($movieId,$theaterId,$start,$time);
+        $json['flag'] = $plan->performance_plan($movieId,$theaterId,$price,$start,$time);
         return json_encode($json);
     }
 
 
+
     public function delete()
     {
-        $performanceId = input('performanceId');
+        $performanceId = input('performance_Id');
         $delete = new performance();
         $json = array();
         $json['flag'] = $delete->performance_delete($performanceId);
@@ -93,4 +96,19 @@ class Performancec extends Controller
         return json_encode($json);
     }
     
+    public function update()
+    {
+        $movieId = input('movie_Id');
+        $theaterId = input('theater_Id');
+        $start = input('performance_Start');
+        // $time = input('movie_Time');
+        $end = input('performance_End');
+        $price = input('movie_Price');
+        $performanceId = input('performance_Id');
+        $update = new performance();
+        $json = array();
+        $json['flag'] = $update->performance_update($movieId,$performanceId,$theaterId,$start,$end,$price);
+        return json_encode($json);
+    }
+
 }

@@ -7,7 +7,7 @@ use think\Db;
 
 class Movie extends Model
 {
-    public function movie_add($name,$brief,$start,$end,$time,$type)
+    public function movie_add($name,$brief,$start,$end,$time,$type,$cover)
     { 
         $result = Db::name('movie')->insert(
             [
@@ -17,7 +17,7 @@ class Movie extends Model
                 'movie_End' => "$end",
                 'movie_Time' => "$time",
                 'movie_Type' => "$type",
-                'movie_Cover' => ""
+                'movie_Cover' => "$cover"
             ]
             );
         if($result)

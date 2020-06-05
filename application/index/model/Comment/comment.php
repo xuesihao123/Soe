@@ -43,10 +43,7 @@ class Comment extends Model
                     ->field('c.comment_Id,c.user_Id,u.user_Name,c.comment_Content,c.comment_Date')
                     ->where('movie_Id',$movieId)
                     ->select();
-        if($result)
-            return 1;
-        else
-            return 0;
+        return $result;
     }
 
 }

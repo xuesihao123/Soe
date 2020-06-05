@@ -15,9 +15,10 @@ class Moviec extends Controller
         $end = input('end');
         $time = input('time');
         $type = input('type');
+        $cover = input('cover');
         $add = new movie();
         $json = array();
-        $json['flag'] = $add->movie_add($name,$brief,$start,$end,$time,$type);
+        $json['flag'] = $add->movie_add($name,$brief,$start,$end,$time,$type,$cover);
         return json_encode($json);
     }
 
